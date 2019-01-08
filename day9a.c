@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
 		unsigned int elfScore = 0;
 		tmpMarble = elfMarbles[i];
 		while (tmpMarble != NULL) {
-			printf (" %d", tmpMarble->value);
+			printf ("%-7d", tmpMarble->value);
 			elfScore += tmpMarble->value;
 			tmpMarble = tmpMarble->nextMarble;
 		}
