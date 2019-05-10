@@ -14,23 +14,28 @@ with open('day6.txt', 'r') as inputfile:
 		if groups[0] == 'turn on':
 			for y in xrange(groups[1][1], groups[2][1] + 1):
 				for x in xrange(groups[1][0], groups[2][0] + 1):
-					lightarray[x][y] = 1
+					lightarray[x][y] += 1
 		elif groups[0] == 'turn off':
 			for y in xrange(groups[1][1], groups[2][1] + 1):
 				for x in xrange(groups[1][0], groups[2][0] + 1):
-					lightarray[x][y] = 0
+					if lightarray[x][y] > 0:
+						lightarray[x][y] -= 1
 		elif groups[0] == 'toggle':
 			for y in xrange(groups[1][1], groups[2][1] + 1):
 				for x in xrange(groups[1][0], groups[2][0] + 1):
-					lightarray[x][y] = 0 if lightarray[x][y] == 1 else 1
+					lightarray[x][y] += 2
 
-	lightcount = 0
+	totalbrightness = 0
+	maxbrightness = 0
 	for y in xrange(1000):
-		lightcount += lightarray[y].count(1)
-	print lightcount, 'lights are lit after following the instructions'
-
+		totalbrightness += sum(lightarray[y])
+		if max(lightarray[y]) > maxbrightness:
+			maxbrightness = max(lightarray[y])
+	print 'The total brightness of all lights is', totalbrightness
 	
-with open('day6a.pgm', 'wb') as f:
-	f.write('P2\n1000 1000\n1\n')
+	print '\nThe brightest light lit has a brightness of', maxbrightness
+	
+with open('day6b.pgm', 'wb') as f:
+	f.write('P2\n1000 1000\n\%d\n' % maxbrightness)
 	for y in xrange(1000):
 		f.write('\n'.join(textwrap.wrap(' '.join(map(str, lightarray[y])), width=70))+'\n')
