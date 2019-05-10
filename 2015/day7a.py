@@ -35,7 +35,7 @@ with open('day7.txt', 'r') as inputfile:
 					wiredict[temp[1]] = temp[0][0] >> temp[0][2]
 				elif temp[0][1] == 'AND':
 					wiredict[temp[1]] = temp[0][0] & temp[0][2]
-				elif temp[0][1] == 'or':
+				elif temp[0][1] == 'OR':
 					wiredict[temp[1]] = temp[0][0] | temp[0][2]
 			else:
 				b.append(temp)
