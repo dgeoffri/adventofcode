@@ -12,5 +12,10 @@ def lookandsay(number, maxiterations):
 		number = ''.join([''.join(map(str,i)) for i in temp])
 	return number
 
-print len(lookandsay(3113322113, 40))
+num = lookandsay(3113322113, 40)
 
+print "The length at the 40th iteration is", len(num)
+
+num = lookandsay(num, 10)
+
+print "The length at the 50th iteration is", len(num)
