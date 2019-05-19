@@ -20,6 +20,9 @@ void incrementPassword (char *password) {
 		}
 		--passwordEnd;
 	}
+
+	if (carryFlag)
+		snprintf (password, 255, "a%s", password);
 }
 
 bool validatePassword (char *password) {

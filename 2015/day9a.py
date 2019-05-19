@@ -20,4 +20,4 @@ with open('day9.txt', 'r') as inputfile:
 			distance += distances[(i[j], i[j+1])]
 		# print "{} - {} miles".format(', '.join(i), distance)
 		results.append([distance, i])
-	print "\nThe shortest path is {} miles long".format(sorted(results)[0][0])
+	print "\nThe shortest path is {} miles long".format(sorted(results)[-1][0])
