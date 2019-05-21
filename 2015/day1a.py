@@ -2,7 +2,7 @@
 
 import sys
 
-txt = sys.argv[1]
+txt = open(sys.argv[1], 'r').read()
 
 x = txt.count('(')
 y = txt.count(')')
