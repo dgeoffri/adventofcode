@@ -4,14 +4,14 @@ import re, itertools
 
 regex=re.compile(r'(.+) would (.+) (\d+) happiness units by sitting next to (.+).')
 try:
-	inputfile=open('day13.txt', 'r').read().splitlines()
+	inputdata=open('day13.txt', 'r').read().splitlines()
 except Exception:
 	print "I had some issue reading the input data"
 
 names=set()
 happiness=dict()
 
-for line in inputfile:
+for line in inputdata:
     data = regex.match(line).groups()
     names.add(data[0])
     names.add(data[3])
@@ -19,7 +19,7 @@ for line in inputfile:
         happiness[(data[0], data[3])] = int(data[2])
     elif data[1] == 'lose':
         happiness[(data[0], data[3])] = 0-int(data[2])
-del inputfile
+del inputdata
 
 # add myself to the list
 for name in names:
