@@ -46,6 +46,7 @@ int main(int argc, char **argv) {
 
 	struct Marble *elfMarbles[NUMELVES] = { NULL };
 
+	int i;
 	int currentElf=0;
 	char elfnum[10];
 
@@ -56,7 +57,7 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 
-	for (int i=1; i<=HIGHESTMARBLE; i++) {
+	for (i=1; i<=HIGHESTMARBLE; i++) {
 		marbles[i].value = i;
 		marbles[i].lastMarble = NULL;
 		marbles[i].nextMarble = NULL;
@@ -71,7 +72,7 @@ int main(int argc, char **argv) {
 
 	// showAllMarbles("-", headMarble, currentMarble);
 
-	for (int i=1; i<=HIGHESTMARBLE; i++) {
+	for (i=1; i<=HIGHESTMARBLE; i++) {
 		if (i % 23)
 			currentMarble = insertMarble(currentMarble, &marbles[i]);
 		else {
@@ -96,7 +97,7 @@ int main(int argc, char **argv) {
 	}
 
 	unsigned int highScore = 0;
-	for (int i=0; i < NUMELVES; i++) {
+	for (i=0; i < NUMELVES; i++) {
 		struct Marble * tmpMarble;
 		unsigned int elfScore = 0;
 		tmpMarble = elfMarbles[i];
