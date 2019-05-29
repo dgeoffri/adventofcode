@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define HIGHESTMARBLE 7124000
 #define NUMELVES 478
@@ -40,7 +41,6 @@ void showAllMarbles(char *e, struct Marble *headMarble, struct Marble *currentMa
 }
 
 int main(int argc, char **argv) {
-	struct Marble marbles[HIGHESTMARBLE+1];
 	struct Marble *currentMarble;
 	struct Marble *headMarble;
 
@@ -48,6 +48,13 @@ int main(int argc, char **argv) {
 
 	int currentElf=0;
 	char elfnum[10];
+
+	struct Marble *marbles = calloc(sizeof(struct Marble), HIGHESTMARBLE+1);
+
+	if (NULL == marbles) {
+		fprintf(stderr, "Could not allocate dynamic memory for marbles, aborting!\n");
+		exit(1);
+	}
 
 	for (int i=1; i<=HIGHESTMARBLE; i++) {
 		marbles[i].value = i;
@@ -62,7 +69,7 @@ int main(int argc, char **argv) {
 	headMarble = &marbles[0];
 	currentMarble = headMarble;
 
-	showAllMarbles("-", headMarble, currentMarble);
+	// showAllMarbles("-", headMarble, currentMarble);
 
 	for (int i=1; i<=HIGHESTMARBLE; i++) {
 		if (i % 23)
@@ -80,7 +87,7 @@ int main(int argc, char **argv) {
 		}
 #ifdef DEBUG
 		snprintf (elfnum, sizeof(elfnum), "%d", currentElf+1);
-		showAllMarbles(elfnum, headMarble, currentMarble);
+		// showAllMarbles(elfnum, headMarble, currentMarble);
 #endif
 	
 		currentElf++;
@@ -94,13 +101,14 @@ int main(int argc, char **argv) {
 		unsigned int elfScore = 0;
 		tmpMarble = elfMarbles[i];
 		while (tmpMarble != NULL) {
-			printf (" %d", tmpMarble->value);
+			// printf (" %d", tmpMarble->value);
 			elfScore += tmpMarble->value;
 			tmpMarble = tmpMarble->nextMarble;
 		}
-		printf (" total: %u\n", elfScore);
+		// printf (" total: %u\n", elfScore);
 		if (elfScore > highScore)
 			highScore = elfScore;
 	}
+	free(marbles);
 	printf ("The highest score awarded was: %u\n", highScore);
 }
