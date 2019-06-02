@@ -8,7 +8,8 @@ regex=re.compile(r'(.+) can fly (\d+) km/s for (\d+) seconds, but then must rest
 try:
 	inputdata=open('day14.txt', 'r').read().splitlines()
 except Exception:
-	print "I had some issue reading the input data"
+	print "I had some issue reading the input data.  Aborting!"
+	exit(1)
 
 capabilities=dict()
 
