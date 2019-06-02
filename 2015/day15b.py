@@ -6,12 +6,13 @@ from sys import argv
 DEBUG = True if (len(argv)>1 and argv[1] == "-d") else False
 MAX_TEASPOONS = 100
 
-def recipetotal_nocals(ingredients, recipedict):
+def recipetotalscoreandcals(ingredients, recipedict):
 	if len(ingredients) != len(recipedict):
 		raise Exception("Recipe must specify a value for each ingredient")
 	characteristicdict = dict()
+	calories = 0
 	for ingredient in ingredients:
-		print "    {} tbsp of {}".format(recipedict[ingredient], ingredient)
+		# print "    {} tbsp of {}".format(recipedict[ingredient], ingredient)
 		characteristics = filter(lambda x: x != 'calories', ingredients[ingredient])
 		for characteristic in characteristics:
 			val = ingredients[ingredient][characteristic] * recipedict[ingredient]
@@ -20,11 +21,12 @@ def recipetotal_nocals(ingredients, recipedict):
 				characteristicdict[characteristic] += val
 			except KeyError:
 				characteristicdict[characteristic] = val
+		calories += ingredients[ingredient]['calories'] * recipedict[ingredient]
 	for characteristic in characteristicdict:
 		if characteristicdict[characteristic] < 0:
 			characteristicdict[characteristic] = 0
-	print characteristicdict
-	return reduce(lambda x,y: x*y, characteristicdict.values())
+	# print characteristicdict
+	return (reduce(lambda x,y: x*y, characteristicdict.values()), calories)
 
 def load_ingredients(filename):
 	regex=re.compile(r'(.+): (.+) (-?\d+), (.+) (-?\d+), (.+) (-?\d+), (.+) (-?\d+), (.+) (-?\d+)$'); 
@@ -46,8 +48,8 @@ def load_ingredients(filename):
 ingredients = load_ingredients('day15' + ('test' if DEBUG else '') + '.txt')
 ingredientlist = ingredients.keys()
 
-for ingredient in ingredients:
-	print "%-20s%s" % (ingredient+":", ingredients[ingredient])
+# for ingredient in ingredients:
+#	print "%-20s%s" % (ingredient+":", ingredients[ingredient])
 
 combinations = filter(lambda x: sum(x) == MAX_TEASPOONS, itertools.permutations(xrange(MAX_TEASPOONS+1), len(ingredients.keys())))
 
@@ -55,9 +57,14 @@ scores = dict()
 
 for num, recipe in enumerate(combinations):
 	recipedict = dict(zip(ingredientlist, recipe))
-	score = recipetotal_nocals(ingredients, recipedict)
+	score = recipetotalscoreandcals(ingredients, recipedict)
 	scores[str(num) +":"+ repr(dict(zip(ingredientlist, recipe)))] = score
-	print "Total score for recipe #{}: {}".format(num, score)
+	print "Total score for recipe #{}: {}, {} calories".format(num, *score)
 
-highestscore = sorted(scores.items(), key=lambda x: x[1])[-1]
-print "Highest score was {} for recipe {}".format(*reversed(highestscore))
+highestscore = sorted(scores.items(), key=lambda x: x[1][0])[-1]
+print "Highest score was {} for recipe {}, {} calories".format(highestscore[1][0], highestscore[0], highestscore[1][1])
+
+highestscore500cals = sorted(filter(lambda x: x[1][1]==500,scores.items()), key=lambda x: x[1][0])[-1]
+print "Highest score with 500 caolories was {} for recipe {}".format(highestscore500cals[1][0], highestscore500cals[0])
+
+
