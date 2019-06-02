@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 import re, itertools
+from sys import argv
 
-DEBUG = False
+DEBUG = True if (len(argv)>1 and argv[1] == "-d") else False
 MAX_TEASPOONS = 100
 
 def recipetotal_nocals(ingredients, recipedict):
@@ -52,8 +53,10 @@ combinations = filter(lambda x: sum(x) == MAX_TEASPOONS, itertools.combinations_
 scores = dict()
 
 for num, recipe in enumerate(combinations):
-	scores[num] = recipetotal_nocals(ingredients, dict(zip(ingredientlist, recipe)))
-	print "Total score for recipe #{}: {}".format(num, scores[num])
+	recipedict = dict(zip(ingredientlist, recipe))
+	score = recipetotal_nocals(ingredients, recipedict)
+	scores[str(num) +":"+ repr(dict(zip(ingredientlist, recipe)))] = score
+	print "Total score for recipe #{}: {}".format(num, score)
 
 highestscore = sorted(scores.items(), key=lambda x: x[1])[-1]
 print "Highest score was {} for recipe {}".format(*reversed(highestscore))
