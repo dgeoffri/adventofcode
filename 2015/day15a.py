@@ -11,7 +11,7 @@ def recipetotal_nocals(ingredients, recipedict):
 		raise Exception("Recipe must specify a value for each ingredient")
 	characteristicdict = dict()
 	for ingredient in ingredients:
-		print "    {} tbsp of {}".format(recipedict[ingredient], ingredient)
+		# print "    {} tbsp of {}".format(recipedict[ingredient], ingredient)
 		characteristics = filter(lambda x: x != 'calories', ingredients[ingredient])
 		for characteristic in characteristics:
 			val = ingredients[ingredient][characteristic] * recipedict[ingredient]
@@ -23,7 +23,7 @@ def recipetotal_nocals(ingredients, recipedict):
 	for characteristic in characteristicdict:
 		if characteristicdict[characteristic] < 0:
 			characteristicdict[characteristic] = 0
-	print characteristicdict
+	# print characteristicdict
 	return reduce(lambda x,y: x*y, characteristicdict.values())
 
 def load_ingredients(filename):
@@ -57,7 +57,7 @@ for num, recipe in enumerate(combinations):
 	recipedict = dict(zip(ingredientlist, recipe))
 	score = recipetotal_nocals(ingredients, recipedict)
 	scores[str(num) +":"+ repr(dict(zip(ingredientlist, recipe)))] = score
-	print "Total score for recipe #{}: {}".format(num, score)
+	# print "Total score for recipe #{}: {}".format(num, score)
 
 highestscore = sorted(scores.items(), key=lambda x: x[1])[-1]
 print "Highest score was {} for recipe {}".format(*reversed(highestscore))

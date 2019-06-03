@@ -10,23 +10,21 @@ def recipetotalscoreandcals(ingredients, recipedict):
 	if len(ingredients) != len(recipedict):
 		raise Exception("Recipe must specify a value for each ingredient")
 	characteristicdict = dict()
-	calories = 0
 	for ingredient in ingredients:
 		# print "    {} tbsp of {}".format(recipedict[ingredient], ingredient)
-		characteristics = filter(lambda x: x != 'calories', ingredients[ingredient])
-		for characteristic in characteristics:
+		for characteristic in ingredients[ingredient]:
 			val = ingredients[ingredient][characteristic] * recipedict[ingredient]
 			# print "       {} points contributed to {} by {}".format(val, characteristic, ingredient)
 			try:
 				characteristicdict[characteristic] += val
 			except KeyError:
 				characteristicdict[characteristic] = val
-		calories += ingredients[ingredient]['calories'] * recipedict[ingredient]
+		# calories += ingredients[ingredient]['calories'] * recipedict[ingredient]
 	for characteristic in characteristicdict:
 		if characteristicdict[characteristic] < 0:
 			characteristicdict[characteristic] = 0
 	# print characteristicdict
-	return (reduce(lambda x,y: x*y, characteristicdict.values()), calories)
+	return (reduce(lambda x,y: x*y, [characteristicdict[z] for z in filter(lambda x: x!= 'calories', characteristicdict.keys())]), characteristicdict['calories'])
 
 def load_ingredients(filename):
 	regex=re.compile(r'(.+): (.+) (-?\d+), (.+) (-?\d+), (.+) (-?\d+), (.+) (-?\d+), (.+) (-?\d+)$'); 
@@ -59,7 +57,7 @@ for num, recipe in enumerate(combinations):
 	recipedict = dict(zip(ingredientlist, recipe))
 	score = recipetotalscoreandcals(ingredients, recipedict)
 	scores[str(num) +":"+ repr(dict(zip(ingredientlist, recipe)))] = score
-	print "Total score for recipe #{}: {}, {} calories".format(num, *score)
+	# print "Total score for recipe #{}: {}, {} calories".format(num, *score)
 
 highestscore = sorted(scores.items(), key=lambda x: x[1][0])[-1]
 print "Highest score was {} for recipe {}, {} calories".format(highestscore[1][0], highestscore[0], highestscore[1][1])
