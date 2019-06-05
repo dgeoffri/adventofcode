@@ -31,7 +31,6 @@ def main():
 			for newmolecule in replacements(molecule, tablekey, sub):
 				combos.add(newmolecule)
 	print "{} molecules can be made by applying the substitutions".format(len(combos))
-	print combos
 
 if __name__ == '__main__':
 	main()
