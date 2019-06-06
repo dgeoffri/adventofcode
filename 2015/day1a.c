@@ -6,6 +6,10 @@ char * readfile(const char *fname) {
 	size_t s, t;
 	char * data;
 	f = fopen(fname, "r");
+	if (NULL == f) {
+		fprintf(stderr, "There was an error opening the input file.  Aborting!\n");
+		exit(1);
+	}
 	if (fseek(f, 0L, SEEK_END)) {
 		fprintf(stderr, "Error seeking to end of file.  Aborting!\n");
 		exit(1);
