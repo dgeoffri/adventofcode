@@ -1,3 +1,6 @@
 CFLAGS=-O4
 
-All: day1a day1b day11a day11b
+all: day1a day1b day11a day11b
+
+clean:
+	rm -f day1a day1b day11a day11b
