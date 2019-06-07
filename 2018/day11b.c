@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define XMAX     300
 #define YMAX     300
@@ -34,7 +35,9 @@ int main(int argc, char **argv) {
 		}
 
 	struct Winner winner = { 0, 0, 1, grid[0][0] };
-	for (i=1; i<300; i++)
+	for (i=1; i<300; i++) {
+		clock_t starttime = clock();
+		printf ("Trying %dx%d - ", i, i);
 		for (y=0; y<(YMAX-i); y++)
 			for (x=0; x<(XMAX-i); x++)
 				if (sumsquare(grid, x, y, i) > winner.score) {
@@ -43,6 +46,8 @@ int main(int argc, char **argv) {
 					winner.size = i;
 					winner.score = sumsquare(grid, x, y, i);
 				}
+		printf ("%f seconds\n", ((float) (clock()-starttime))/CLOCKS_PER_SEC);
+	}
 	
 	printf ("The grid with the highest score starts at (%d, %d), has a size of %dx%d, and a score of %d\n", winner.x+1, winner.y+1, winner.size, winner.size, winner.score);
 }
