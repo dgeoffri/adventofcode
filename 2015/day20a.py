@@ -1,19 +1,29 @@
 #!/usr/bin/env python
 
+from math import sqrt
+
 PUZZLE_INPUT = 36000000
 
+def factors(number):
+	factors=list()
+	for i in xrange(1, int(sqrt(number))+1):
+		if ((number % i) == 0):
+			factors.append(i)
+			other = number / i
+			if other != i:
+				factors.append(other)
+	return factors
+
 def howmanypresentsdoesthehouseget(house):
-	presents = 0
-	for elf in xrange(house, 0, -1):
-		if (house % elf) == 0:
-			presents += (elf*10)
-	return presents
+	return sum(factors(house))*10
 
 def main(): 
-	house = 831594
-	while howmanypresentsdoesthehouseget(house) <= PUZZLE_INPUT:
-		print "{} presents delivered to house {}".format(howmanypresentsdoesthehouseget(house), house)
+	house = 1
+	numpresents = howmanypresentsdoesthehouseget(house)
+	while numpresents <= PUZZLE_INPUT:
+		# print "{} presents delivered to house {}".format(numpresents, house)
 		house +=1
+		numpresents = howmanypresentsdoesthehouseget(house)
 	print house
 	print PUZZLE_INPUT
 
