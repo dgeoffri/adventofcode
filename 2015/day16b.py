@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-import re
+import re, sys
 
 correct_aunt_properties = {'children': ('=', 3), 'cats': ('>', 7), 'samoyeds': ('=', 2), 'pomeranians': ('<', 3), 'akitas': ('=', 0),
 	 'vizslas': ('=', 0), 'goldfish': ('<', 5), 'trees': ('>', 3), 'cars': ('=', 2), 'perfumes': ('=', 1)}
@@ -23,7 +23,7 @@ def load_sues(filename):
 	return sues
 
 def main():
-	sues = load_sues('day16.txt')
+	sues = load_sues(sys.argv[1] if len(sys.argv) > 1 else 'day16.txt')
 	for auntnumber in sues.keys():
 		matches = True
 		for prop, (comparator, value) in correct_aunt_properties.items():
