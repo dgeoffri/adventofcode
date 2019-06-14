@@ -25,7 +25,6 @@ def main():
 		house +=1
 		numpresents = howmanypresentsdoesthehouseget(house)
 	print house
-	print PUZZLE_INPUT
 
 if __name__ == "__main__":
 	main()
