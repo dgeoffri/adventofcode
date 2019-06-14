@@ -29,13 +29,10 @@ unsigned long howmanypresentsdoesthehouseget(unsigned long house) {
 	elf = factorlist;
 	while (*elf) {
 		// printf ("  %lu", *elf);
-		if (house <= (*elf * 50))
-			presents += (*elf++);
-		else
-			*elf++;
+		presents += (*elf++);
 	}
 	// printf ("\n");
-	return presents * 11;
+	return presents * 10;
 }
 
 int main(int argc, char **argv) {
