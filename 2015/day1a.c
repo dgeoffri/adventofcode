@@ -33,7 +33,6 @@ char * readfile(const char *fname) {
 int main(int argc, char **argv) {
 	char * filedata, * dir;
 	int floor = 0;
-	int no_basement = 1;
 	if (argc != 2) {
 		printf ("Please provide the filename containing your puzzle input as the first argument\n");
 		return 1;

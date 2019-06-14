@@ -32,7 +32,7 @@ unsigned long howmanypresentsdoesthehouseget(unsigned long house) {
 		if (house <= (*elf * 50))
 			presents += (*elf++);
 		else
-			*elf++;
+			elf++;
 	}
 	// printf ("\n");
 	return presents * 11;
