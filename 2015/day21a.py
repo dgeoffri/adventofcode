@@ -51,7 +51,8 @@ def fight_to_the_death(build_stats, boss_stats):
 	stats = { 'Boss': {'Damage': boss_stats['Damage'], 'Armor': boss_stats['Armor']}, 'Me': build_stats }
 	
 	while (hitpoints[currentplayer] > 0) and (hitpoints[opposition] > 0):
-		hitpoints[opposition] -= (stats[currentplayer]['Damage'] - stats[opposition]['Armor'])
+		damage_dealt = (stats[currentplayer]['Damage'] - stats[opposition]['Armor'])
+		hitpoints[opposition] -= max(damage_dealt, 1)
 		currentplayer, opposition = opposition, currentplayer
 
 	# print "A legend has died!"
