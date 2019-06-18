@@ -67,15 +67,15 @@ def main():
 			prop, val = line.rstrip().split(': ')
 			boss_stats[prop] = int(val)
 
-	cheapest_win = 400
+	most_expensive_win = 0
 	for build in iterate_build():
 		build_stats = stats_from_build(build)
 		winner = fight_to_the_death(build_stats, boss_stats)
-		if (winner == 'Me') and (build_stats['Cost'] < cheapest_win):
-			cheapest_win = build_stats['Cost']
-			print "New most affordable win found: " + repr(build)
-			print " Cost: " + str(cheapest_win)
-	print "The absolute cheapest win cost " + str(cheapest_win)
+		if (winner == 'Boss') and (build_stats['Cost'] > most_expensive_win):
+			most_expensive_win = build_stats['Cost']
+			print "New most expensive win found: " + repr(build)
+			print " Cost: " + str(most_expensive_win)
+	print "The absolute most expensive win cost " + str(most_expensive_win)
 
 if __name__ == '__main__':
 	main()
