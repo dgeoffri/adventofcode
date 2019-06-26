@@ -20,5 +20,5 @@ for move in txt:
 		curloc[1]-=1
 	houselist.append(tuple(curloc))
 
-print '\n'.join(map(repr, houselist))
+# print '\n'.join(map(repr, houselist))
 print len(set(houselist)), "houses are visited at least once"

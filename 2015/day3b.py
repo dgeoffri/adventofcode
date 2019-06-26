@@ -24,5 +24,5 @@ for move in txt:
 	houselist.append(tuple(curloc[cursanta]))
 	cursanta = 'Robo-Santa' if cursanta=='Santa' else 'Santa'
 
-print '\n'.join(map(repr, houselist))
+# print '\n'.join(map(repr, houselist))
 print len(set(houselist)), "houses are visited at least once"

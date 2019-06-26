@@ -32,24 +32,26 @@ func main() {
 
 	unique_addresses := make(map[Address]bool)
 	addresses := make([]Address, len(dat)+1)
-	current_address := Address{0,0}
-	unique_addresses[current_address] = true
+	current_address_array := [2]Address{{0,0}, {0,0}}
+	current_santa := 0
+	unique_addresses[current_address_array[0]] = true
 
 	for i := 0; i < len(dat); i++ {
-		addresses[i] = current_address
+		addresses[i] = current_address_array[current_santa]
 		switch(dat[i]) {
 			case '^':
-				current_address.y++
+				current_address_array[current_santa].y++
 			case 'v':
-				current_address.y--
+				current_address_array[current_santa].y--
 			case '<':
-				current_address.x--
+				current_address_array[current_santa].x--
 			case '>':
-				current_address.x++
+				current_address_array[current_santa].x++
 		}
-		unique_addresses[current_address] = true
+		unique_addresses[current_address_array[current_santa]] = true
+		current_santa ^= 1
 	}
-	addresses[len(dat)] = current_address
+	addresses[len(dat)] = current_address_array[current_santa]
 
 	// for i := 0; i < len(addresses); i++ {
 	// 	fmt.Println(addresses[i])
