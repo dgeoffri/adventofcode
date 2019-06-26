@@ -8,7 +8,7 @@ import (
 )
 
 func printusage() {
-	fmt.Printf("Usage: %s <directions file>\n\nFind how many unique addresses Santa visits based on directions given in <directions file>\n", os.Args[0])
+	fmt.Printf("Usage: %s [directions file]\n\nFind how many unique addresses Santa visits based on directions given in directions file\nIf no directions file is given, day3.txt is assumed to contain the input.\n", os.Args[0])
 	log.Fatal("FATAL: no filename given")
 }
 
@@ -25,7 +25,7 @@ type Address struct {
 func main() {
 	var fname string
 
-	if len(os.Args) > 2 {
+	if (len(os.Args) > 2) || ((len(os.Args) == 2) && (os.Args[1] == "-h")) || ((len(os.Args) == 2) && (os.Args[1] == "--help")) {
 		printusage()
 	}
 	

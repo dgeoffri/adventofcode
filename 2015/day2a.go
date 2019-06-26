@@ -10,7 +10,7 @@ import (
 )
 
 func printusage() {
-	fmt.Printf("Usage: %s <packages file>\n\nFind how much wrapping paper is needed to wrap all the packages described in <packages file>\n", os.Args[0])
+	fmt.Printf("Usage: %s [packages file]\n\nFind how much wrapping paper is needed to wrap all the packages described in packages file\nIf no packages file is given, day2.txt is assumed to contain the input.\n", os.Args[0])
 	log.Fatal("FATAL: no filename given")
 }
 
