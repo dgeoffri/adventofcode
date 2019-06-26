@@ -14,13 +14,13 @@ houselist.append(tuple(curloc['Robo-Santa']))
 
 for move in txt:
 	if move == '^':
-		curloc[cursanta][0]+=1
-	elif move == 'v':
-		curloc[cursanta][0]-=1
-	elif move == '>':
 		curloc[cursanta][1]+=1
-	elif move == '<':
+	elif move == 'v':
 		curloc[cursanta][1]-=1
+	elif move == '>':
+		curloc[cursanta][0]+=1
+	elif move == '<':
+		curloc[cursanta][0]-=1
 	houselist.append(tuple(curloc[cursanta]))
 	cursanta = 'Robo-Santa' if cursanta=='Santa' else 'Santa'
 

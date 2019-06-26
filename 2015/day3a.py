@@ -11,14 +11,14 @@ houselist = []
 houselist.append(tuple(curloc))
 for move in txt:
 	if move == '^':
-		curloc[0]+=1
-	elif move == 'v':
-		curloc[0]-=1
-	elif move == '>':
 		curloc[1]+=1
-	elif move == '<':
+	elif move == 'v':
 		curloc[1]-=1
+	elif move == '>':
+		curloc[0]+=1
+	elif move == '<':
+		curloc[0]-=1
 	houselist.append(tuple(curloc))
 
-# print '\n'.join(map(repr, houselist))
+print '\n'.join(map(repr, houselist))
 print len(set(houselist)), "houses are visited at least once"
