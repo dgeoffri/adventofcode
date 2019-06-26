@@ -61,5 +61,5 @@ func main() {
 		total_length += 2*min(l+w,w+h,h+l)+l*w*h
 	}
 
-	fmt.Printf("%v feet of wrapping paper is needed to wrap all the presents\n", total_length)
+	fmt.Printf("%v feet of ribbon is needed to wrap all the presents\n", total_length)
 }

@@ -4,8 +4,9 @@ import sys, hashlib
 
 try:
 	inp = sys.argv[1]
-except e:
-	print "Usage: %s <puzzle input>\n" % sysv.arg[0]
+except Exception as e:
+	print "Usage: %s <puzzle input>\n" % sys.argv[0]
+	sys.exit(1)
 
 num = 0
 while not hashlib.md5(inp + str(num)).hexdigest().startswith('00000'):
