@@ -2,7 +2,7 @@
 
 import sys
 
-txt = sys.argv[1]
+txt = open(sys.argv[1] if len(sys.argv)>1 else "day3.txt", "r").read().rstrip()
 
 curloc = [0,0]
 
@@ -20,5 +20,5 @@ for move in txt:
 		curloc[1]-=1
 	houselist.append(tuple(curloc))
 
-print len(set(houselist)), "houses are visited at least once"
 print '\n'.join(map(repr, houselist))
+print len(set(houselist)), "houses are visited at least once"

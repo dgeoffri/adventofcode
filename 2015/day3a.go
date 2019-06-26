@@ -51,9 +51,9 @@ func main() {
 	}
 	addresses[len(dat)] = current_address
 
-	fmt.Printf ("%v houses are visted at least once\n", len(unique_addresses))
-
 	for i := 0; i < len(addresses); i++ {
 		fmt.Println(addresses[i])
 	}
+
+	fmt.Printf ("%v houses are visted at least once\n", len(unique_addresses))
 }
