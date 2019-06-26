@@ -10,7 +10,7 @@ import (
 )
 
 func printusage() {
-	fmt.Printf("Usage: %s <directions file>\n\nFind Santa's location based on up and down directions given in <directions file>\n", os.Args[0])
+	fmt.Printf("Usage: %s <packages file>\n\nFind how much ribbon is needed to wrap all the packages described in <packages file>\n", os.Args[0])
 	log.Fatal("FATAL: no filename given")
 }
 
@@ -33,11 +33,19 @@ func min(is ...int) int {
 func main() {
 	total_length := 0
 
-	if len(os.Args) != 2 {
+	var fname string
+
+	if (len(os.Args) > 2) || ((len(os.Args) == 2) && (os.Args[1] == "-h")) || ((len(os.Args) == 2) && (os.Args[1] == "--help")) {
 		printusage()
 	}
 
-	f, err := os.Open(os.Args[1])
+	if (len(os.Args) == 2) {
+		fname = os.Args[1]
+	} else {
+		fname = "day2.txt"
+	}
+
+	f, err := os.Open(fname)
 	check(err)
 
 	s := bufio.NewScanner(f)

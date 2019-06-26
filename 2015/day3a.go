@@ -23,11 +23,19 @@ type Address struct {
 }
 
 func main() {
-	if len(os.Args) != 2 {
+	var fname string
+
+	if len(os.Args) > 2 {
 		printusage()
 	}
+	
+	if len(os.Args) == 2 {
+		fname = os.Args[1]
+	} else {
+		fname = "day3.txt"
+	}
 
-	dat, err := ioutil.ReadFile(os.Args[1])
+	dat, err := ioutil.ReadFile(fname)
 	check(err)
 
 	unique_addresses := make(map[Address]bool)
