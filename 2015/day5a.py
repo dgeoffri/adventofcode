@@ -15,6 +15,8 @@ with open ('day5.txt', 'r') as inputfile:
 							break
 					else:
 						nicestrings.append(word)
+						break
 				lastcharacter = character
 
-print len(set(nicestrings))
+# print nicestrings
+print len(nicestrings)
