@@ -28,7 +28,7 @@ func main() {
 	if (len(os.Args) > 2) || ((len(os.Args) == 2) && (os.Args[1] == "-h")) || ((len(os.Args) == 2) && (os.Args[1] == "--help")) {
 		printusage()
 	}
-	
+
 	if len(os.Args) == 2 {
 		fname = os.Args[1]
 	} else {

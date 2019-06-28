@@ -14,15 +14,15 @@ with open('day6.txt', 'r') as inputfile:
 		if groups[0] == 'turn on':
 			for y in xrange(groups[1][1], groups[2][1] + 1):
 				for x in xrange(groups[1][0], groups[2][0] + 1):
-					lightarray[x][y] = 1
+					lightarray[y][x] = 1
 		elif groups[0] == 'turn off':
 			for y in xrange(groups[1][1], groups[2][1] + 1):
 				for x in xrange(groups[1][0], groups[2][0] + 1):
-					lightarray[x][y] = 0
+					lightarray[y][x] = 0
 		elif groups[0] == 'toggle':
 			for y in xrange(groups[1][1], groups[2][1] + 1):
 				for x in xrange(groups[1][0], groups[2][0] + 1):
-					lightarray[x][y] = 0 if lightarray[x][y] == 1 else 1
+					lightarray[y][x] ^= 1
 
 	lightcount = 0
 	for y in xrange(1000):
