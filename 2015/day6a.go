@@ -67,14 +67,16 @@ func writepgm(fname string, lightarray [][]int) {
 	f, err := os.Create(fname)
 	check(err)
 
+	w := bufio.NewWriter(f)
+
 	defer f.Close()
 
-	fmt.Fprintf(f, "P2\n1000 1000\n1\n")
+	fmt.Fprintf(w, "P2\n1000 1000\n1\n")
 	for y := 0; y < len(lightarray); y++ {
 		for x := 0; x < len(lightarray[y]); x++ {
-			fmt.Fprintf(f, "%d ", lightarray[y][x])
+			fmt.Fprintf(w, "%d ", lightarray[y][x])
 		}
-		fmt.Fprintf(f, "\n")
+		fmt.Fprintf(w, "\n")
 	}
 }
 
