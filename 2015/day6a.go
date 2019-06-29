@@ -6,6 +6,7 @@ import (
 	"os"
 	"log"
 	"bufio"
+	"strconv"
 	// "strings"
 )
 
@@ -67,16 +68,30 @@ func writepgm(fname string, lightarray [][]int) {
 	f, err := os.Create(fname)
 	check(err)
 
-	w := bufio.NewWriter(f)
-
 	defer f.Close()
 
+	w := bufio.NewWriter(f)
+
+	defer w.Flush()
+	
 	fmt.Fprintf(w, "P2\n1000 1000\n1\n")
 	for y := 0; y < len(lightarray); y++ {
-		for x := 0; x < len(lightarray[y]); x++ {
-			fmt.Fprintf(w, "%d ", lightarray[y][x])
+		var newval string = strconv.Itoa(lightarray[y][0])
+		curlinelen := len(newval)
+		w.WriteString(newval)
+		for x := 1; x < len(lightarray[y]); x++ {
+			newval = strconv.Itoa(lightarray[y][x])
+			if curlinelen + len(newval) > 70 + 1 {  // + 1 for the length of the space
+				w.WriteByte('\n')
+				w.WriteString(newval)
+				curlinelen = len(newval) + 1
+			} else {
+				w.WriteByte(' ')
+				w.WriteString(newval)
+				curlinelen += len(newval) +1
+			}
 		}
-		fmt.Fprintf(w, "\n")
+		w.WriteByte('\n')
 	}
 }
 
