@@ -12,7 +12,6 @@ def has_abba(group):
 			if (quad[0] != quad[1]) and (quad[0] == quad[3]) and (quad[1] == quad[2]):
 				abba = True
 	return abba
-		
 	
 def getgroups(address):
 	hypernets = re.findall(r"\[(\w+)\]", address)
