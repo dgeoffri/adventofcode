@@ -2,7 +2,7 @@
 
 import re, itertools
 
-with open('day9.txt', 'r') as inputfile:
+with open('day09.txt', 'r') as inputfile:
 	inputdata = inputfile.read().splitlines()
 	regex = re.compile(r'(.+) to (.+) = (\d+)')
 	cities = set()

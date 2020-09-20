@@ -2,7 +2,7 @@
 
 import re, itertools, sqlite3
 
-with open('day9.txt', 'r') as inputfile:
+with open('day09.txt', 'r') as inputfile:
 	inputdata = inputfile.read().splitlines()
 	cities = set([i.split(' ')[0] for i in inputdata] + [i.split(' ')[2] for i in inputdata])
 	regex = re.compile(r'(.+) to (.+) = (\d+)')

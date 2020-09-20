@@ -2,7 +2,7 @@
 
 import sys
 
-txt = open(sys.argv[1] if len(sys.argv) > 1 else "day3.txt").read().rstrip()
+txt = open(sys.argv[1] if len(sys.argv) > 1 else "day03.txt").read().rstrip()
 
 curloc = { 'Santa': [0,0], 'Robo-Santa': [0,0] }
 cursanta = 'Santa'

@@ -5,7 +5,7 @@ from ast import literal_eval
 
 lightarray = [array.array('B', (0 for _ in xrange(1000))) for _ in xrange(1000)]
 
-with open('day6.txt', 'r') as inputfile:
+with open('day06.txt', 'r') as inputfile:
 	regex = re.compile(r'(.*) (\d+,\d+) through (\d+,\d+)')
 	for line in inputfile:
 		match = regex.match(line)

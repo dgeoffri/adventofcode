@@ -9,7 +9,7 @@ import (
 )
 
 func printusage() {
-	fmt.Printf("Usage: %s [words file]\n\nCount the number of \"nice\" words in the words file\nIf no words file is given, day5.txt is assumed to contain the input.\n", os.Args[0])
+	fmt.Printf("Usage: %s [words file]\n\nCount the number of \"nice\" words in the words file\nIf no words file is given, day05.txt is assumed to contain the input.\n", os.Args[0])
 	log.Fatal("FATAL: no filename given")
 }
 
@@ -30,7 +30,7 @@ func main() {
 	if (len(os.Args) == 2) {
 		fname = os.Args[1]
 	} else {
-		fname = "day5.txt"
+		fname = "day05.txt"
 	}
 
 	f, err := os.Open(fname)

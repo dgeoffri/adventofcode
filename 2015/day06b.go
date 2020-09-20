@@ -15,7 +15,7 @@ type coord struct {
 }
 
 func printusage() {
-	fmt.Printf("Usage: %s [instructions file]\n\nFind the total brightness of all lit lights after following instructions in instructions file\nIf no instructions file is given, day6.txt is assumed to contain the input.\n", os.Args[0])
+	fmt.Printf("Usage: %s [instructions file]\n\nFind the total brightness of all lit lights after following instructions in instructions file\nIf no instructions file is given, day06.txt is assumed to contain the input.\n", os.Args[0])
 	log.Fatal("FATAL: no filename given")
 }
 
@@ -105,7 +105,7 @@ func writepgm(fname string, lightarray [][]int, maxbrightness int) {
 func main() {
 	r := regexp.MustCompile(`(.*) (\d+,\d+) through (\d+,\d+)`)
 
-	f, err := os.Open(getfname("day6.txt"))
+	f, err := os.Open(getfname("day06.txt"))
 	check(err)
 
 	s := bufio.NewScanner(f)

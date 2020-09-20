@@ -2,7 +2,7 @@
 
 nicestrings = []
 
-with open ('day5.txt', 'r') as inputfile:
+with open ('day05.txt', 'r') as inputfile:
 	for line in inputfile:
 		word = line.rstrip()
 		alllocations = []

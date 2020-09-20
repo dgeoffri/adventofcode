@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 for _ in (0,1):    
-    with open('day7.txt', 'r') as inputfile:
+    with open('day07.txt', 'r') as inputfile:
             b=[ [ i.split(' -> ')[0].split(' '), i.split(' -> ')[1] ] for i in inputfile.read().splitlines() ]
             wiredict = {}
             for i in b:

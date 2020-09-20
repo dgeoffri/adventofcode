@@ -50,4 +50,5 @@ int main(int argc, char **argv) {
 	}
 	free(filedata);
 	printf ("Santa should arrive on floor %d\n", floor);
+	return 0;
 }

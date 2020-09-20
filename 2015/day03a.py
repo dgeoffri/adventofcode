@@ -2,7 +2,7 @@
 
 import sys
 
-txt = open(sys.argv[1] if len(sys.argv)>1 else "day3.txt", "r").read().rstrip()
+txt = open(sys.argv[1] if len(sys.argv)>1 else "day03.txt", "r").read().rstrip()
 
 curloc = [0,0]
 

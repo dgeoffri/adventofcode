@@ -8,7 +8,7 @@ import (
 )
 
 func printusage() {
-	fmt.Printf("Usage: %s [directions file]\n\nFind how many unique addresses Santa visits based on directions given in directions file\nIf no directions file is given, day3.txt is assumed to contain the input.\n", os.Args[0])
+	fmt.Printf("Usage: %s [directions file]\n\nFind how many unique addresses Santa visits based on directions given in directions file\nIf no directions file is given, day03.txt is assumed to contain the input.\n", os.Args[0])
 	log.Fatal("FATAL: no filename given")
 }
 
@@ -32,7 +32,7 @@ func main() {
 	if len(os.Args) == 2 {
 		fname = os.Args[1]
 	} else {
-		fname = "day3.txt"
+		fname = "day03.txt"
 	}
 
 	dat, err := ioutil.ReadFile(fname)
