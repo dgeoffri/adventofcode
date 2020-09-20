@@ -38,8 +38,8 @@ class person(object):
 		return location
 
 if __name__ == "__main__":
-	with open("day1.txt") as instruction_file:
+	with open("day01.txt", "r") as inputfile:
 		p = person()
-		location = p.execute_steps(instruction_file.read())
+		location = p.execute_steps(inputfile.read())
 		print "You are %d steps away from the HQ." % (abs (location[0]) + abs (location[1]))
 

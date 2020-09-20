@@ -52,7 +52,7 @@ def decompress(data):
 	return decompressed_data_length
 
 if __name__ == "__main__":
-	with open("day9.txt", "r") as inputfile:
+	with open("day09.txt", "r") as inputfile:
 		data = inputfile.read().rstrip()
 	decompressed_data_length = decompress(data)
 	print "Decompressed data are %d bytes long" % decompressed_data_length

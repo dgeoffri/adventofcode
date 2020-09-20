@@ -43,7 +43,7 @@ def decompress(data):
 	return decompressed_data
 
 if __name__ == "__main__":
-	with open("day9.txt", "r") as inputfile:
+	with open("day09.txt", "r") as inputfile:
 		data = inputfile.read().rstrip()
 	decompressed_data = decompress(data)
 	print decompressed_data	

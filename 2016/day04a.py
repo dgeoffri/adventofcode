@@ -10,7 +10,7 @@ def roomIsValid(roomdict):
 	return roomdict['checksum'] == checksum
 
 if __name__ == "__main__":
-	with open('day4.txt', 'r') as inputfile:
+	with open('day04.txt', 'r') as inputfile:
 		inputfile_data = inputfile.readlines()
 	rooms = []
 	for line in inputfile_data:

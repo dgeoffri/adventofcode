@@ -62,7 +62,7 @@ class LCDScreen(object):
 
 if __name__ == "__main__":
 	LCD = LCDScreen()
-	with open("day8.txt", "r") as inputfile:
+	with open("day08.txt", "r") as inputfile:
 		for line in inputfile:
 			LCD.dispatch_instruction(line.rstrip())
 	print "There are %d pixels lit on the display" % LCD.get_lit_pixel_count()

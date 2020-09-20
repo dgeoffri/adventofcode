@@ -32,7 +32,7 @@ def supports_TLS(address):
 	return abba
 
 if __name__ == "__main__":
-	with open("day7.txt", "r") as inputfile:
+	with open("day07.txt", "r") as inputfile:
 		inputfile_data = inputfile.readlines()
 	addresses_with_TLS = filter(supports_TLS, inputfile_data)
 	print "%d addresses support TLS" % len(addresses_with_TLS)

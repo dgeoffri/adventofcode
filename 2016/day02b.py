@@ -27,7 +27,7 @@ def executeline(line):
 	return keypad[loc[1]][loc[0]]
 
 if __name__ == "__main__":
-	with open("day2.txt", "r") as inputfile:
+	with open("day02.txt", "r") as inputfile:
 		for line in inputfile:
 			doorcode += executeline(line.strip())
 		print "The door code is %s" % doorcode

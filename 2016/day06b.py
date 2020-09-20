@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 if __name__ == "__main__":
-	with open("day6.txt", "r") as inputfile:
+	with open("day06.txt", "r") as inputfile:
 		inputfile_contents = map(str.rstrip, inputfile.readlines())
 	plaintext = ""
 	for x in range(len(inputfile_contents[0])):
