@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
 	int 		grid[XMAX][YMAX]={0};
 	int 		x, y, i;
 
-	infile = fopen("day6.txt", "r");
+	infile = fopen("day06.txt", "r");
 	if (!infile) {
 		printf ("Can't open file\n");
 		return 1;

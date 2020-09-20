@@ -20,6 +20,6 @@ class Node(object):
 				if x<=self.childrenCount:
 					self.value += self.children[x-1].value	
     
-license = map(int,open('day8.txt','r').read().splitlines()[0].split(' '))
+license = map(int,open('day08.txt','r').read().splitlines()[0].split(' '))
 root = Node(license)
 print root.value

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-infile=open('day2.txt')
+infile=open('day02.txt')
 bw2,bw3=set(), set()
 for boxid in infile:
 	letters={}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-polymer = list(open('day5.txt', 'r').read().strip())
+polymer = list(open('day05.txt', 'r').read().strip())
 length = len(polymer)-1
 index = 0
 while index < length:

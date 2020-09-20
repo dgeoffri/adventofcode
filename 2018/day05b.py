@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-originalpolymer = list(open('day5.txt', 'r').read().strip())
+originalpolymer = list(open('day05.txt', 'r').read().strip())
 for letter in "abcdefghijklmnopqrstuvwxyz":
 	print "Removing " + letter + "/" + chr(ord(letter) ^ 32)
 	polymer = [x for x in originalpolymer if x not in [letter, chr(ord(letter) ^ 32)]]

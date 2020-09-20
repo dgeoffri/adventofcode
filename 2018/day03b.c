@@ -6,7 +6,7 @@ int main (int argc, char **argv) {
 	int num, x, y, startx, starty, width, height; 
 	long collisioninches=0;
 	int mostoverlap=0;
-	infile = fopen("day3.txt", "r");
+	infile = fopen("day03.txt", "r");
 	while (fscanf(infile, "#%d @ %d,%d: %dx%d\n", &num, &startx, &starty, &width, &height) != EOF) {
 		// printf("Number %d, starting at %d, %d, %dx%d\n", num, startx, starty, width, height);
 		for (y=starty; y<starty+height; y++)

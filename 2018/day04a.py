@@ -3,7 +3,7 @@
 import numpy, collections, re
 
 logregex = re.compile(r'\[(\d+)-(\d+)-(\d+) (\d+):(\d+)\] (.*)')
-with open("day4.txt", "r") as f:
+with open("day04.txt", "r") as f:
 	filedata = f.read().splitlines()
 	data = sorted(map(lambda x: logregex.match(x).groups(), filedata))
 	del filedata

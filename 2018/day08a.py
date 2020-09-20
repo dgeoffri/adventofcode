@@ -13,6 +13,6 @@ class Node(object):
             self.metadata.append(data.pop(0))
     	self.metadataSum=sum(self.metadata) + sum([x.metadataSum for x in self.children])
     
-license = map(int,open('day8.txt','r').read().splitlines()[0].split(' '))
+license = map(int,open('day08.txt','r').read().splitlines()[0].split(' '))
 root = Node(license)
 print root.metadataSum

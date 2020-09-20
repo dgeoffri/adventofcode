@@ -3,7 +3,7 @@
 import re
 
 regex=re.compile(r"Step (\D) must be finished before step (\D) can begin.")
-steps=open('day7.txt','r').read().splitlines()
+steps=open('day07.txt','r').read().splitlines()
 tt=[regex.match(f).groups() for f in steps]
 
 prereqs={}

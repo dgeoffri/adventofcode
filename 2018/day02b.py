@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-infile=open('day2.txt')
+infile=open('day02.txt')
 boxids=infile.read().splitlines()
 
 while boxids:
