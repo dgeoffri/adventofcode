@@ -32,7 +32,7 @@ def main():
 	wirearray = [ array.array('c', '.' * WIDTH) for _ in range(HEIGHT) ]
 	origin = (WIDTH / 2, HEIGHT / 2)
 	wirearray[origin[0]][origin[1]] = 'o'
-	with open('day3.txt', 'r') as f:
+	with open('day03.txt', 'r') as f:
 		wiredata = f.read().splitlines()
 	for wire in wiredata:
 		pos = list(origin)
