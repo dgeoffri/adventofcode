@@ -19,7 +19,7 @@ function room {
 function main {
   while read -r line ; do
     room $line
-  done < day4.txt
+  done < day04.txt
 
   echo "${REAL_ROOM_IDS[@]}" 
   for room in ${REAL_ROOM_IDS[@]} ; do
