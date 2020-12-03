@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 if __name__ == "__main__":
-    inputdata = open("day02.txt", "r").read().splitlines()
+    with open('day02.txt', 'r') as f:
+        inputdata = f.read().splitlines()
     validpasswords = []
     for line in inputdata:
         policy, password = line.split(": ")
