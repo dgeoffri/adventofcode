@@ -24,9 +24,6 @@ def main():
 				for axis in (0, 1):
 					pos[axis] += dirvector[axis]
 				wirelocations[wirenumber].append(tuple(pos))
-	# print "Crossings found: " + repr(crossings)
-	# nearestcrossing = findnearestcrossing(crossings, origin = origin)
-	# print "Closest crossing found has a Manhattan distance of: " + str(nearestcrossing)
 	wiresets = map(set, wirelocations)
 	crossings = reduce(lambda x, y: x & y, wiresets)
 	print "Closest intersection is {} units away.".format(min(map(find_distance, list(crossings))))
