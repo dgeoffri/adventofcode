@@ -29,7 +29,7 @@ def main():
 	# print "Closest crossing found has a Manhattan distance of: " + str(nearestcrossing)
 	wiresets = map(set, wirelocations)
 	crossings = reduce(lambda x, y: x & y, wiresets)
-	print "Closest intersection is {} units away.".format(sorted(map(find_distance, list(crossings)))[0])
+	print "Closest intersection is {} units away.".format(min(map(find_distance, list(crossings))))
 
 if __name__ == "__main__":
 	main()
