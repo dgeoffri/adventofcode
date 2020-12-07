@@ -3,9 +3,9 @@
 import re
 
 def contains_gold(bags, bag):
-    if "shiny gold" in [y for x, y in bags[bag]]:
+    if "shiny gold" in [y for _, y in bags[bag]]:
         return True
-    for x, y in bags[bag]:
+    for _, y in bags[bag]:
         if contains_gold(bags, y):
             return True
     return False

@@ -3,9 +3,9 @@
 import re
 
 def contains_gold(bags, bag):
-    if "shiny gold" in [y for x, y in bags[bag]]:
+    if "shiny gold" in [y for _, y in bags[bag]]:
         return True
-    for x, y in bags[bag]:
+    for _, y in bags[bag]:
         if contains_gold(bags, y):
             return True
     return False
@@ -13,7 +13,7 @@ def contains_gold(bags, bag):
 
 def count_bags_recursively(bags, bag):
     try:
-        firstlevel = sum([int(x) for x, y in bags[bag]])
+        firstlevel = sum([int(x) for x, _ in bags[bag]])
         recursion = sum([int(x) * count_bags_recursively(bags, y) for x, y in bags[bag]])
         return firstlevel + recursion
     except KeyError:
