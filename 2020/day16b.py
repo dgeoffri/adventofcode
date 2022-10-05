@@ -64,10 +64,46 @@ def ticket_is_valid_factory(rules):
         return valid_ticket
     return ticket_is_valid
 
+def field_is_valid(rules, fieldvalue):
+    for min, max in rules:
+        if (min <= fieldvalue <= max):
+            return True
+    return False
+
+def prune(mappings, column_to_remove):
+    for field in mappings:
+        if field == fieldname:
+            continue
+        if len(mappings[field]) > 1:
+            mappings[field].remove(column_to_remove)
+            if len(mappings[field]) == 1:
+                # Recurse
+                prune(mappings, mappings[field][0])
+
 if __name__ == "__main__":
     with open('day16.txt', 'r') as f:
         inputdata = f.read().splitlines()
     rules = extract_rules(inputdata)
     ticketdict = extract_tickets(inputdata)
-    errors_in_tickets = find_errors_in_tickets(rules, ticketdict['nearby'])
-    print sum(itertools.chain(*(filter(len, errors_in_tickets))))
+    goodtickets = filter(ticket_is_valid_factory(rules), ticketdict['nearby'] + ticketdict['your'])
+    possible_mappings = { key: list(range(len(ticketdict['nearby'][0]))) for key in rules }
+
+    for ticketnumber, ticket in enumerate(goodtickets):
+        for column_number, value in enumerate(ticket):
+            for fieldname, rule in rules.items():
+                if column_number in possible_mappings[fieldname] and not field_is_valid(rule, value):
+                    possible_mappings[fieldname].remove(column_number)
+                    if len(possible_mappings[fieldname]) == 1:
+                        column_to_remove = possible_mappings[fieldname][0]
+                        # positive allocation, remove this choice from the rest
+                        prune(possible_mappings, column_to_remove)
+
+    product = 1
+    myticket = ticketdict['your'][0]
+    for fieldname in possible_mappings:
+        if fieldname.startswith("departure"):
+            fieldnumber = possible_mappings[fieldname][0]
+            product *= myticket[fieldnumber]
+    print "Part b answer is: " + str(product)
+
+#  'row': ((32, 789), (795, 955))
