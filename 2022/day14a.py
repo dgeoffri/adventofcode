@@ -37,12 +37,12 @@ class Reservoir:
         while not at_rest:
             if new_sand_y > self.abyss_line:
                 return False
-            if (new_sand_x, new_sand_y + 1) not in self.sand | self.rocks:
+            if (new_sand_x, new_sand_y + 1) not in self.sand and (new_sand_x, new_sand_y + 1) not in self.rocks:
                 new_sand_y += 1
-            elif (new_sand_x - 1, new_sand_y + 1) not in self.sand | self.rocks:
+            elif (new_sand_x - 1, new_sand_y + 1) not in self.sand and (new_sand_x - 1, new_sand_y + 1) not in self.rocks:
                 new_sand_x -= 1
                 new_sand_y += 1
-            elif (new_sand_x + 1, new_sand_y + 1) not in self.sand | self.rocks:
+            elif (new_sand_x + 1, new_sand_y + 1) not in self.sand and (new_sand_x + 1, new_sand_y + 1) not in self.rocks:
                 new_sand_x += 1
                 new_sand_y += 1
             else:
