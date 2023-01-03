@@ -2,7 +2,7 @@
 
 import re
 from functools import reduce
-from operator import or_ as or_function
+from operator import add
 
 
 class Sensor:
@@ -14,11 +14,14 @@ class Sensor:
     def excluded_points_in_row(self, row):
         row_offset = abs(self.sensor[1] - row)
         if row_offset > self.distance:
-            return set()
+            return []
         else:
             min_x = self.sensor[0] - (self.distance - row_offset)
             max_x = self.sensor[0] + (self.distance - row_offset)
-            return set(x for x in range(min_x, max_x + 1) if (x, row) != self.beacon)
+            excluded_points = [x for x in range(min_x, max_x + 1)]
+            if row == self.beacon[1]:
+                excluded_points.remove(self.beacon[0])
+            return excluded_points
 
     def __repr__(self):
         return f"Sensor at x={self.sensor[0]}, y={self.sensor[1]}: closest beacon is at x={self.beacon[0]}, y={self.beacon[1]} - the distance-to-beacon is {self.distance}"
@@ -41,5 +44,5 @@ if __name__ == "__main__":
         sensors_and_beacons = f.read().splitlines()
     sensors = load_sensors(sensors_and_beacons)
 
-    excluded_points_in_row = reduce(or_function, (sensor.excluded_points_in_row(ROW_TO_CHECK) for sensor in sensors))
+    excluded_points_in_row = set(reduce(add, (sensor.excluded_points_in_row(ROW_TO_CHECK) for sensor in sensors)))
     print(f"{len(excluded_points_in_row)} points in row {ROW_TO_CHECK} cannot be beacons.")
