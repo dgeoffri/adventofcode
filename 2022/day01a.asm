@@ -105,13 +105,14 @@ display_result:	mov	rax, 1
 		syscall
 		ret
 
+success_exit:	xor	edi, edi			; only successful exits implemented
 exit:		mov	rax, 60				; set up for exit syscall
 		syscall
 
 _start:		call	read_file
 		call	findmax
 		call	display_result
-		jmp 	exit
+		jmp 	success_exit
 
 		section .data
 inputfn:	db	"day01.txt", 0
