@@ -17,11 +17,6 @@ def find_common_item_type(group_of_3_rucksacks):
     else:
         raise ValueError("These elves have not an item in common!")
 
-def outgrabe(first, second):
-    for i in first:
-        if i in second:
-            return PRIORITIES.index(i)
-
 if __name__ == "__main__":
     with open("day03.txt", "r") as fp:
         data = fp.read().splitlines()
