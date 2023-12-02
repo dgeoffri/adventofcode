@@ -26,7 +26,7 @@ read_file:	mov	rdi, inputfn
 		call	close_input
 		ret
 
-;; Read a line from the input and return as an integer in rax
+;; Read a line from the input, score the round, and return points scores in al
 ;; ON ENTRY:    rsi points to current position in input
 ;; ON EXIT:     rsi points to beginning of next line to consume
 ;;		al contains the points earned this round

@@ -11,6 +11,6 @@ if __name__ == "__main__":
             running_total = 0
         else:
             running_total += int(line)
-    print(f"The elf with the most calories has {sorted(calories_per_elf)[-1]} calories.")
+    print(f"The elf with the most calories has {max(calories_per_elf)} calories.")
     print(f"The sum of the calories carried by the top 3 elves is {sum(sorted(calories_per_elf)[-3:])} calories.")
 
