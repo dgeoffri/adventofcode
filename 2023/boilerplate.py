@@ -5,7 +5,6 @@ import sys
 DAY = 1
 USE_SAMPLE_DATA = True
 SAMPLE_DATA = """
-
 """
 
 def solve_pt1(inputfile):
@@ -26,9 +25,8 @@ if __name__ == "__main__":
             sys.exit(1)
 
     with puzzle_input as f:
-        f.read()
         print("---PART 1---")
         solve_pt1(f)
         f.seek(0)
-        print("---PART 2---")
+        print("\n---PART 2---")
         solve_pt2(f)
