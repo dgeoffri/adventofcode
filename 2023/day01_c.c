@@ -5,10 +5,12 @@
 
 #define FILENAME "day01.txt"
 
-int get_calibration_value_pt1(char *line) {
+int get_calibration_value(char *line, int part_two) {
 	char * line_ptr;
 	char * line_end = line + strlen(line);
 	int firstnum, lastnum, calibration_value, OK = 0;
+	char * const numbernames[] = {"zero", "one", "two", "three", "four", "five", "six",
+		"seven", "eight", "nine"};
 
 	// strip
 	if (*--line_end != '\n') {
@@ -24,6 +26,19 @@ int get_calibration_value_pt1(char *line) {
 			OK++;
 			break;
 		}
+		if (part_two) {
+			for (int i = 0; i < 10; i++) {
+				char *numbername = numbernames[i];
+				int numbernamelen = strlen(numbername);
+				if (line_ptr + numbernamelen > line_end + 1) continue;
+				if (strncmp(line_ptr, numbername, numbernamelen) == 0) {
+					firstnum = i;
+					OK++;
+					break;
+				}
+			}
+			if (OK) break;
+		}
 	}
 
 	// we shouldn't have reached the end of line without finding a number
@@ -31,12 +46,27 @@ int get_calibration_value_pt1(char *line) {
 		fprintf(stderr, "No digits found in line! [%s]\n", line);
 		return 0;
 	}
+	OK = 0;
 
 	// search backwards for last number
 	for (line_ptr = line_end; line_ptr >= line; line_ptr--) {
 		if (*line_ptr >= '0' && *line_ptr <= '9') {
 			lastnum = *line_ptr - '0';
+			OK++;
 			break;
+		}
+		if (part_two) {
+			for (int i = 0; i < 10; i++) {
+				char *numbername = numbernames[i];
+				int numbernamelen = strlen(numbername);
+				if (line_ptr + numbernamelen > line_end + 1) continue;
+				if (strncmp(line_ptr, numbername, numbernamelen) == 0) {
+					lastnum = i;
+					OK++;
+					break;
+				}
+			}
+			if (OK) break;
 		}
 	}
 
@@ -45,19 +75,23 @@ int get_calibration_value_pt1(char *line) {
 	return calibration_value;
 }
 
-void solve_pt1(FILE *infile) {
+void solve(FILE *infile, int part_two) {
 	char *linebuf;
 	linebuf = malloc(LINE_MAX);
 	int running_total = 0;
 	while (fgets(linebuf, LINE_MAX, infile) != NULL) {
-		running_total += get_calibration_value_pt1(linebuf);
+		running_total += get_calibration_value(linebuf, part_two);
 	}
 	printf("Total is %d\n", running_total);
 	free(linebuf);
 }
 
+void solve_pt1(FILE *infile) {
+	solve(infile, 0);
+}
+
 void solve_pt2(FILE *infile) {
-	printf("Not yet implemented!\n");
+	solve(infile, 1);
 }
 
 int main(int argc, char **argv) {
