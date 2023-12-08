@@ -79,14 +79,14 @@ def solve_pt1(inputfile):
 def solve_pt2(inputfile):
     seeds, maps = readfile(inputfile)
     lowest = None
-    # while len(seeds):
-    for _ in (1,):
-        # startseed = seeds.pop(0)
-        # seedrange = seeds.pop(0)
-        startseed = 443681800
-        seedrange = 544174761
+    while len(seeds):
+    # for _ in (1,):
+        startseed = seeds.pop(0)
+        seedrange = seeds.pop(0)
+        # startseed = 443681800
+        # seedrange = 544174761
         print(f"Checking seeds {startseed} through {startseed + seedrange}")
-        for seed in range(startseed, startseed + seedrange):
+        for seed in range(startseed, startseed + seedrange, 100):
             seedboy = seed
             # print(f"Seed {seed}:")
             for mapname in ("seed-to-soil", "soil-to-fertilizer", "fertilizer-to-water", "water-to-light", "light-to-temperature", "temperature-to-humidity", "humidity-to-location"):
@@ -98,8 +98,8 @@ def solve_pt2(inputfile):
             if lowest == None:
                 lowest = seed
             else:
-                lowest = min(lowest, seed)
-                if lowest == seed:
+                if seed < lowest:
+                    lowest = seed
                     print(f"new low of {seed} found with seedboy {seedboy}")
     print(f"Lowest location is {lowest}")
 
