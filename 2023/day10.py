@@ -135,10 +135,22 @@ class PipeSegment:
 
 def solve_pt1(inputfile):
     m = Maze(inputfile)
-    print(m)
     print(f"The maze starts at {m.start}")
     steps_taken = m.walk_around()
-    print(f"It looks like {len(steps_taken) // 2} steps to the furthest point in the route, which is {steps_taken}")
+    colored = False
+    for y, line in enumerate(str(m).splitlines()):
+        printline = ""
+        for x, char in enumerate(line):
+            if not colored and (x,y) in steps_taken:
+                printline += "\x1b[33m"
+                colored = True
+            elif colored and (x,y) not in steps_taken:
+                printline += "\x1b[0m"
+                colored = False
+            printline += char
+        print(printline)
+
+    print(f"It looks like {len(steps_taken) // 2} steps to the furthest point in the route")
 
 
 def solve_pt2(inputfile):
