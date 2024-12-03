@@ -3,7 +3,6 @@
 import sys
 
 DAY = 1
-USE_SAMPLE_DATA = True
 SAMPLE_DATA = """
 """
 
@@ -14,7 +13,7 @@ def solve_pt2(inputfile):
     print("Not implemented yet")
 
 if __name__ == "__main__":
-    if USE_SAMPLE_DATA:
+    if len(sys.argv) > 1 and sys.argv[1] == "-e":
         from io import StringIO
         puzzle_input = StringIO(SAMPLE_DATA)
     else:
