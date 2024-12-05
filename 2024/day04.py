@@ -32,7 +32,7 @@ def solve_pt1(inputfile):
                 for ydir in (-1, 0, 1):
                     if xdir == ydir == 0:
                         continue
-                    if (xcursor + (xdir * wordlen)) < 0 or (xcursor + (xdir * wordlen)) > width or (ycursor + (ydir * wordlen)) < 0 or (ycursor + (ydir * wordlen)) > height:
+                    if (xcursor + (xdir * (wordlen - 1))) < 0 or (xcursor + (xdir * (wordlen - 1))) >= width or (ycursor + (ydir * (wordlen - 1))) < 0 or (ycursor + (ydir * (wordlen - 1))) >= height:
                         continue
                     for position, letter in enumerate(WORD_TO_FIND):
                         print(f"checking position {xcursor + (xdir * position)},{ycursor + (ydir * position)} for the letter {letter}")
@@ -45,7 +45,35 @@ def solve_pt1(inputfile):
     
 
 def solve_pt2(inputfile):
-    print("Not implemented yet")
+    SUB_WORD_TO_FIND = WORD_TO_FIND[1:]
+    print(SUB_WORD_TO_FIND)
+    assert len(SUB_WORD_TO_FIND) == 3
+    count = 0
+    puzzle = []
+    for line in inputfile:
+        puzzle.append(list(line.rstrip()))
+    for line in puzzle:
+        print(' '.join(line))
+    width = len(puzzle[0])
+    height = len(puzzle)
+    for ycursor in range(1, height - 1):
+        for xcursor in range(1, width - 1):
+            count_at_cursor = 0
+            for xdir, ydir in (1, 1), (1, -1), (-1, 1), (-1, -1):
+                xstart, ystart = xcursor - xdir, ycursor - ydir
+                if (xstart + (xdir * 2)) < 0 or (xstart + (xdir * 2)) >= width or (ystart + (ydir * 2)) < 0 or (ystart + (ydir * 2)) >= height:
+                    continue
+                for position, letter in enumerate(SUB_WORD_TO_FIND):
+                    print(f"checking position {xstart + (xdir * position)},{ystart + (ydir * position)} for the letter {letter}")
+                    if puzzle[ystart + (ydir * position)][xstart + (xdir * position)] != letter:
+                        break
+                else:
+                    print(f"FOUND {SUB_WORD_TO_FIND} at {xstart}, {ystart} with xdir={xdir} and ydir={ydir}")
+                    count_at_cursor += 1
+            if count_at_cursor > 1:
+                print(f"FOUND {SUB_WORD_TO_FIND} criss-crossed at {xcursor}, {ycursor}!")
+                count += 1
+    print(f"Found the word {SUB_WORD_TO_FIND} criss-crossed {count} times in the puzzle!")
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "-e":
